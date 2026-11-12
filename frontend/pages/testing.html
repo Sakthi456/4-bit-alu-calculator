@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing and Verification | 4-Bit ALU</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main class="calculator">
+    <header class="header">
+        <div class="logo">ALU</div>
+        <div>
+            <h1>4-Bit ALU Calculator</h1>
+            <p>Verilog Hardware Calculator | Vivado XSim</p>
+        </div>
+    </header>
+    <nav class="top-nav" aria-label="Main navigation"><a class="nav-link" href="../index.html">Calculator</a><a class="nav-link" href="architecture.html">RTL Architecture</a><a class="nav-link" href="rtl-explorer.html">RTL Explorer</a><a class="nav-link" href="vivado-analysis.html">Vivado Analysis</a><a class="nav-link active" href="testing.html">Testing</a><a class="nav-link" href="project-info.html">Project Info</a></nav>
+    
+<section class="detail-page-section">
+    <h2>04. ALU Testing and Verification</h2>
+    <p class="hardware-description">Boundary and input validation tests for the supplied Version 2 ALU. Use the Calculator page to run operations through FastAPI and Vivado XSim.</p>
+    <div class="hardware-panel">
+        <h3>Boundary test cases</h3>
+        <div class="metric-row"><span>ADD: 15 + 1</span><strong>0000 | C=1 Z=1 V=0</strong></div>
+        <div class="metric-row"><span>ADD: 7 + 1</span><strong>1000 | C=0 Z=0 V=1</strong></div>
+        <div class="metric-row"><span>SUB: 0 - 1</span><strong>1111 | C=0 Z=0 V=0</strong></div>
+        <div class="metric-row"><span>SUB: 5 - 5</span><strong>0000 | C=1 Z=1 V=0</strong></div>
+        <div class="metric-row"><span>INC: 15</span><strong>0000 | C=1 Z=1 V=0</strong></div>
+        <div class="metric-row"><span>INC: 7</span><strong>1000 | C=0 Z=0 V=1</strong></div>
+        <div class="metric-row"><span>DEC: 0</span><strong>1111 | C=0 Z=0 V=0</strong></div>
+        <div class="metric-row"><span>DEC: 8</span><strong>0111 | C=1 Z=0 V=1</strong></div>
+        <div class="metric-row"><span>AND: 5 &amp; 10</span><strong>0000 | C=0 Z=1 V=0</strong></div>
+    </div>
+    <div class="hardware-panel">
+        <h3>Input validation checks</h3>
+        <div class="metric-row"><span>Values above 15</span><strong>Rejected</strong></div>
+        <div class="metric-row"><span>Negative values</span><strong>Rejected</strong></div>
+        <div class="metric-row"><span>Empty input</span><strong>Rejected</strong></div>
+        <div class="metric-row"><span>Non-integer input</span><strong>Rejected</strong></div>
+        <div class="metric-row"><span>Valid input</span><strong>Accepted</strong></div>
+    </div>
+    <div class="hardware-observation"><h3>Verification note</h3><p>These expected values are derived from the supplied Version 2 RTL and the test cases used in the project. Retain actual Vivado simulation logs and screenshots as supporting evidence.</p></div>
+</section>
+
+    <footer class="footer">
+        <span>4-bit Arithmetic Logic Unit</span>
+        <span>Powered by Verilog HDL and Vivado XSim</span>
+    </footer>
+</main>
+</body>
+</html>

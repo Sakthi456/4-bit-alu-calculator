@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivado Hardware Analysis | 4-Bit ALU</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main class="calculator">
+    <header class="header">
+        <div class="logo">ALU</div>
+        <div>
+            <h1>4-Bit ALU Calculator</h1>
+            <p>Verilog Hardware Calculator | Vivado XSim</p>
+        </div>
+    </header>
+    <nav class="top-nav" aria-label="Main navigation"><a class="nav-link" href="../index.html">Calculator</a><a class="nav-link" href="architecture.html">RTL Architecture</a><a class="nav-link" href="rtl-explorer.html">RTL Explorer</a><a class="nav-link active" href="vivado-analysis.html">Vivado Analysis</a><a class="nav-link" href="testing.html">Testing</a><a class="nav-link" href="project-info.html">Project Info</a></nav>
+        <section class="hardware-section">
+
+        <h2>07. Vivado Hardware Analysis</h2>
+
+        <p class="hardware-description">
+            Synthesis and implementation comparison of two 4-bit ALU architectures.
+        </p>
+
+        <!-- HARDWARE METRICS -->
+        <div class="hardware-grid">
+
+            <div class="hardware-card">
+                <span>Version 1 LUTs</span>
+                <strong>17</strong>
+                <small>Slice LUTs</small>
+            </div>
+
+            <div class="hardware-card">
+                <span>Version 2 LUTs</span>
+                <strong>11</strong>
+                <small>Slice LUTs</small>
+            </div>
+
+            <div class="hardware-card">
+                <span>LUT Reduction</span>
+                <strong>35.3%</strong>
+                <small>Version 2 improvement</small>
+            </div>
+
+            <div class="hardware-card">
+                <span>Version 2 Delay</span>
+                <strong>9.301 ns</strong>
+                <small>Post-route delay</small>
+            </div>
+
+        </div>
+
+        <!-- RESOURCE UTILIZATION -->
+        <div class="hardware-panel">
+
+            <h3>Resource Utilization</h3>
+
+            <div class="metric-row">
+                <span>Slice LUTs</span>
+                <span>V1: 17 | V2: 11</span>
+            </div>
+
+            <div class="metric-row">
+                <span>F7 Muxes</span>
+                <span>V1: 5 | V2: 1</span>
+            </div>
+
+            <div class="metric-row">
+                <span>Slices</span>
+                <span>V1: 5 | V2: 6</span>
+            </div>
+
+        </div>
+
+        <!-- TIMING ANALYSIS -->
+        <div class="hardware-panel">
+
+            <h3>Timing Analysis</h3>
+
+            <div class="metric-row">
+                <span>Version 1 Delay</span>
+                <strong>8.821 ns</strong>
+            </div>
+
+            <div class="metric-row">
+                <span>Version 2 Delay</span>
+                <strong>9.301 ns</strong>
+            </div>
+
+            <div class="metric-row">
+                <span>Version 1 WNS</span>
+                <strong>+1.154 ns</strong>
+            </div>
+
+            <div class="metric-row">
+                <span>Version 2 WNS</span>
+                <strong>+0.674 ns</strong>
+            </div>
+
+        </div>
+
+        <!-- ARCHITECTURE COMPARISON CHARTS -->
+        <div class="hardware-panel chart-panel">
+
+            <h3>Architecture Comparison Charts</h3>
+
+            <!-- LUT CHART -->
+            <div class="chart-container">
+
+                <h4>Slice LUT Utilization</h4>
+
+                <div class="chart-row">
+                    <span>Version 1</span>
+                    <div class="chart-track">
+                        <div class="chart-bar version-one" style="width:100%">
+                            17
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-row">
+                    <span>Version 2</span>
+                    <div class="chart-track">
+                        <div class="chart-bar version-two" style="width:64.71%">
+                            11
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- F7 MUX CHART -->
+            <div class="chart-container">
+
+                <h4>F7 Multiplexer Utilization</h4>
+
+                <div class="chart-row">
+                    <span>Version 1</span>
+                    <div class="chart-track">
+                        <div class="chart-bar version-one" style="width:100%">
+                            5
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-row">
+                    <span>Version 2</span>
+                    <div class="chart-track">
+                        <div class="chart-bar version-two" style="width:20%">
+                            1
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- DELAY CHART -->
+            <div class="chart-container">
+
+                <h4>Post-Route Delay</h4>
+
+                <div class="chart-row">
+                    <span>Version 1</span>
+                    <div class="chart-track">
+                        <div class="chart-bar version-one" style="width:94.84%">
+                            8.821 ns
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-row">
+                    <span>Version 2</span>
+                    <div class="chart-track">
+                        <div class="chart-bar version-two" style="width:100%">
+                            9.301 ns
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- WNS CHART -->
+            <div class="chart-container">
+
+                <h4>Worst Negative Slack (WNS)</h4>
+
+                <div class="chart-row">
+                    <span>Version 1</span>
+                    <div class="chart-track">
+                        <div class="chart-bar version-one" style="width:100%">
+                            +1.154 ns
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-row">
+                    <span>Version 2</span>
+                    <div class="chart-track">
+                        <div class="chart-bar version-two" style="width:58.4%">
+                            +0.674 ns
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="chart-legend">
+                <span><i class="legend-one"></i> Version 1</span>
+                <span><i class="legend-two"></i> Version 2</span>
+            </div>
+
+        </div>
+
+        <!-- DESIGN OBSERVATION -->
+        <div class="hardware-observation">
+
+            <h3>Design Observation</h3>
+
+            <p>
+                Version 2 uses a shared arithmetic unit to reduce hardware
+                resource utilization. It achieves 35.3% fewer Slice LUTs
+                and fewer F7 multiplexers compared with Version 1.
+                However, its post-route delay is slightly higher.
+                This demonstrates the trade-off between hardware area
+                and timing performance.
+            </p>
+
+        </div>
+
+    </section>
+    <footer class="footer">
+        <span>4-bit Arithmetic Logic Unit</span>
+        <span>Powered by Verilog HDL and Vivado XSim</span>
+    </footer>
+</main>
+</body>
+</html>

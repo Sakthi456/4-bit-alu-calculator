@@ -1,0 +1,427 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-Bit ALU | Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main class="calculator">
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo">ALU</div>
+        <div>
+            <h1>4-Bit ALU Calculator</h1>
+            <p>Verilog Hardware Calculator | Vivado XSim</p>
+        </div>
+    </header>
+
+
+    <nav class="top-nav" aria-label="Main navigation">
+        <a class="nav-link active" href="index.html">Calculator</a>
+        <a class="nav-link" href="pages/architecture.html">RTL Architecture</a>
+        <a class="nav-link" href="pages/rtl-explorer.html">RTL Explorer</a>
+        <a class="nav-link" href="pages/vivado-analysis.html">Vivado Analysis</a>
+        <a class="nav-link" href="pages/testing.html">Testing</a>
+        <a class="nav-link" href="pages/project-info.html">Project Info</a>
+    </nav>
+
+    <!-- INPUT SECTION -->
+    <section class="input-section">
+        <h2>01. Input Values</h2>
+
+        <div class="input-grid">
+
+            <div class="input-group">
+                <label for="inputA">Input A</label>
+                <input type="number" id="inputA" min="0" max="15" value="5">
+                <span>4-bit input (0–15)</span>
+            </div>
+
+            <div class="input-group">
+                <label for="inputB">Input B</label>
+                <input type="number" id="inputB" min="0" max="15" value="3">
+                <span>4-bit input (0–15)</span>
+            </div>
+
+            <div class="binary-input-display">
+                <p>Input A (Binary): <strong id="binaryA">0101</strong></p>
+                <p>Input B (Binary): <strong id="binaryB">0011</strong></p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- OPERATION SECTION -->
+    <section class="operation-section">
+        <h2>02. Select Operation</h2>
+
+        <div class="operation-grid">
+
+            <button class="operation-btn" data-opcode="000">
+                <strong>+</strong>
+                <span>ADD</span>
+                <small>000</small>
+            </button>
+
+            <button class="operation-btn" data-opcode="001">
+                <strong>−</strong>
+                <span>SUBTRACT</span>
+                <small>001</small>
+            </button>
+
+            <button class="operation-btn" data-opcode="010">
+                <strong>AND</strong>
+                <span>BITWISE AND</span>
+                <small>010</small>
+            </button>
+
+            <button class="operation-btn" data-opcode="011">
+                <strong>OR</strong>
+                <span>BITWISE OR</span>
+                <small>011</small>
+            </button>
+
+            <button class="operation-btn" data-opcode="100">
+                <strong>XOR</strong>
+                <span>BITWISE XOR</span>
+                <small>100</small>
+            </button>
+
+            <button class="operation-btn" data-opcode="101">
+                <strong>NOT</strong>
+                <span>BITWISE NOT</span>
+                <small>101</small>
+            </button>
+
+            <button class="operation-btn" data-opcode="110">
+                <strong>INC</strong>
+                <span>INCREMENT A</span>
+                <small>110</small>
+            </button>
+
+            <button class="operation-btn" data-opcode="111">
+                <strong>DEC</strong>
+                <span>DECREMENT A</span>
+                <small>111</small>
+            </button>
+
+            <p id="selectedOperation" class="selected-operation">
+                No operation selected
+            </p>
+
+        </div>
+    </section>
+
+    <!-- RESULT SECTION -->
+    <section class="result-section">
+        <h2>03. ALU Output</h2>
+
+        <div class="result-display">
+
+            <span class="result-label">RESULT</span>
+
+            <div id="resultValue" class="result-value">----</div>
+
+            <div class="result-details">
+
+                <div>
+                    <span>Binary</span>
+                    <strong id="binaryResult">----</strong>
+                </div>
+
+                <div>
+                    <span>Decimal</span>
+                    <strong id="decimalResult">--</strong>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FLAGS -->
+    <section class="flag-section">
+        <h2>04. Status Flags</h2>
+
+        <div class="flag-grid">
+
+            <div class="flag">
+                <span>CARRY</span>
+                <strong id="carryFlag">-</strong>
+            </div>
+
+            <div class="flag">
+                <span>ZERO</span>
+                <strong id="zeroFlag">-</strong>
+            </div>
+
+            <div class="flag">
+                <span>OVERFLOW</span>
+                <strong id="overflowFlag">-</strong>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SYSTEM STATUS AND HISTORY -->
+    <div class="dashboard-tools">
+
+        <!-- SYSTEM STATUS -->
+        <section class="status-section">
+            <h2>05. System Status</h2>
+
+            <div class="status-grid">
+
+                <div class="status-card">
+                    <span class="status-indicator" id="backendStatus">
+                        <span class="status-dot"></span>
+                        Checking...
+                    </span>
+                    <p>FastAPI Backend</p>
+                </div>
+
+                <div class="status-card">
+                    <span class="status-indicator" id="simulationStatus">
+                        <span class="status-dot"></span>
+                        Idle
+                    </span>
+                    <p>Vivado XSim</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- OPERATION HISTORY -->
+        <section class="history-section">
+
+            <div class="history-header">
+                <h2>06. Operation History</h2>
+
+                <div class="history-actions">
+
+                    <button id="exportHistory" class="action-btn" type="button">
+                        Export CSV
+                    </button>
+
+                    <button id="clearHistory" class="action-btn" type="button">
+                        Clear History
+                    </button>
+
+                </div>
+            </div>
+
+            <div id="historyList" class="history-list">
+                <p class="empty-history">No operations performed yet.</p>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- VIVADO HARDWARE ANALYSIS -->
+
+
+    <!-- RTL ARCHITECTURE VISUALIZATION -->
+
+
+
+    <!-- INTERACTIVE RTL EXPLANATION -->
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <span>4-bit Arithmetic Logic Unit</span>
+        <span>Powered by Verilog HDL and Vivado XSim</span>
+    </footer>
+
+</main>
+
+<script src="app.js"></script>
+
+<script>
+/* Interactive explanation of the supplied Version 2 ALU RTL.
+   The actual calculator result remains controlled by FastAPI + Vivado XSim. */
+(function () {
+    const byId = (id) => document.getElementById(id);
+    const inputA = byId("inputA");
+    const inputB = byId("inputB");
+    const operationButtons = document.querySelectorAll(".operation-btn");
+
+    const operations = {
+        "000": {
+            name: "Addition",
+            kind: "arithmetic",
+            path: "A and B are passed to the shared arithmetic unit.",
+            arithB: (a, b) => b,
+            carryIn: 0,
+            prep: "arith_b = B; carry_in = 0",
+            expression: "A + B",
+            code: "3'b000: begin\n    arith_b = B;\n    carry_in = 1'b0;\nend",
+            flag: "Carry is the fifth bit of the 5-bit sum. Overflow detects signed addition overflow."
+        },
+        "001": {
+            name: "Subtraction",
+            kind: "arithmetic",
+            path: "B is inverted and carry_in is set to 1 to perform two's-complement subtraction.",
+            arithB: (a, b) => (~b) & 15,
+            carryIn: 1,
+            prep: "arith_b = ~B; carry_in = 1",
+            expression: "A + (~B) + 1",
+            code: "3'b001: begin\n    arith_b = ~B;\n    carry_in = 1'b1;\nend",
+            flag: "Carry = 1 means no borrow. Overflow detects signed subtraction overflow."
+        },
+        "010": {
+            name: "AND",
+            kind: "logic",
+            path: "Each result bit is 1 only when the corresponding bits of A and B are both 1.",
+            expression: "A & B",
+            code: "3'b010: begin\n    result = A & B;\nend",
+            flag: "Carry and overflow are set to 0 by the default assignments. Zero checks whether the result is 0000."
+        },
+        "011": {
+            name: "OR",
+            kind: "logic",
+            path: "Each result bit is 1 when either corresponding input bit is 1.",
+            expression: "A | B",
+            code: "3'b011: begin\n    result = A | B;\nend",
+            flag: "Carry and overflow are set to 0 by the default assignments. Zero checks whether the result is 0000."
+        },
+        "100": {
+            name: "XOR",
+            kind: "logic",
+            path: "Each result bit is 1 when the corresponding input bits are different.",
+            expression: "A ^ B",
+            code: "3'b100: begin\n    result = A ^ B;\nend",
+            flag: "Carry and overflow are set to 0 by the default assignments. Zero checks whether the result is 0000."
+        },
+        "101": {
+            name: "NOT A",
+            kind: "logic",
+            path: "Every bit of A is inverted. B does not affect this operation.",
+            expression: "~A",
+            code: "3'b101: begin\n    result = ~A;\nend",
+            flag: "Carry and overflow are set to 0 by the default assignments. Zero checks whether the result is 0000."
+        },
+        "110": {
+            name: "Increment A",
+            kind: "arithmetic",
+            path: "The shared arithmetic unit adds 1 to A. B is not used.",
+            arithB: () => 0,
+            carryIn: 1,
+            prep: "arith_b = 0000; carry_in = 1",
+            expression: "A + 0 + 1",
+            code: "3'b110: begin\n    arith_b = 4'b0000;\n    carry_in = 1'b1;\nend\n\n// Overflow: A == 0111",
+            flag: "Carry is the fifth bit of the sum. Overflow is set when A = 0111."
+        },
+        "111": {
+            name: "Decrement A",
+            kind: "arithmetic",
+            path: "Adding 1111 to A is equivalent to subtracting 1 in 4-bit two's-complement arithmetic.",
+            arithB: () => 15,
+            carryIn: 0,
+            prep: "arith_b = 1111; carry_in = 0",
+            expression: "A + 1111 + 0",
+            code: "3'b111: begin\n    arith_b = 4'b1111;\n    carry_in = 1'b0;\nend\n\n// Overflow: A == 1000",
+            flag: "Carry follows the no-borrow convention. Overflow is set when A = 1000."
+        }
+    };
+
+    function binary(value, width) {
+        return (value >>> 0).toString(2).padStart(width, "0").slice(-width);
+    }
+
+    function safeInput(element, fallback) {
+        const value = Number(element && element.value);
+        return Number.isInteger(value) && value >= 0 && value <= 15 ? value : fallback;
+    }
+
+    function render(opcode) {
+        const op = operations[opcode];
+        if (!op) return;
+
+        const a = safeInput(inputA, 5);
+        const b = safeInput(inputB, 3);
+        let result = 0;
+        let carry = 0;
+        let overflow = 0;
+        let arithB = null;
+        let carryIn = null;
+        let arithmeticValue = null;
+
+        if (op.kind === "arithmetic") {
+            arithB = op.arithB(a, b);
+            carryIn = op.carryIn;
+            arithmeticValue = a + arithB + carryIn;
+            result = arithmeticValue & 15;
+            carry = (arithmeticValue >> 4) & 1;
+
+            if (opcode === "000") {
+                overflow = ((~(a ^ b) & (result ^ a) & 8) !== 0) ? 1 : 0;
+            } else if (opcode === "001") {
+                overflow = (((a ^ b) & (result ^ a) & 8) !== 0) ? 1 : 0;
+            } else if (opcode === "110") {
+                overflow = a === 7 ? 1 : 0;
+            } else if (opcode === "111") {
+                overflow = a === 8 ? 1 : 0;
+            }
+        } else {
+            if (opcode === "010") result = a & b;
+            if (opcode === "011") result = a | b;
+            if (opcode === "100") result = a ^ b;
+            if (opcode === "101") result = (~a) & 15;
+        }
+
+        const zero = result === 0 ? 1 : 0;
+
+        byId("rtlOperationTitle").textContent = op.name;
+        byId("rtlOpcode").textContent = "OPCODE: " + opcode;
+        byId("rtlInputA").textContent = binary(a, 4);
+        byId("rtlInputB").textContent = binary(b, 4);
+        byId("rtlInputADecimal").textContent = "Decimal: " + a;
+        byId("rtlInputBDecimal").textContent = "Decimal: " + b;
+        byId("rtlPathDescription").textContent = op.path;
+
+        byId("rtlArithmeticPath").classList.toggle("selected", op.kind === "arithmetic");
+        byId("rtlLogicPath").classList.toggle("selected", op.kind === "logic");
+
+        byId("rtlArithB").textContent = arithB === null ? "Not used" : binary(arithB, 4);
+        byId("rtlCarryIn").textContent = carryIn === null ? "Not used" : String(carryIn);
+        byId("rtlPreparationNote").textContent = op.prep || "This operation uses the separate bitwise logic path.";
+        byId("rtlExpression").textContent = op.expression;
+
+        byId("rtlArithmeticResult").textContent =
+            arithmeticValue === null ? "Not used" : binary(arithmeticValue, 5);
+        byId("rtlArithmeticNote").textContent = op.kind === "arithmetic"
+            ? "The upper bit is the carry-out; the lower four bits become result."
+            : "The shared arithmetic unit is not selected for this logical operation.";
+
+        byId("rtlResult").textContent = binary(result, 4);
+        byId("rtlCarryFlag").textContent = String(carry);
+        byId("rtlZeroFlag").textContent = String(zero);
+        byId("rtlOverflowFlag").textContent = String(overflow);
+        byId("rtlFlagExplanation").textContent = op.flag;
+        byId("rtlCodeSnippet").textContent = op.code;
+    }
+
+    operationButtons.forEach((button) => {
+        button.addEventListener("click", () => render(button.dataset.opcode));
+    });
+
+    [inputA, inputB].forEach((input) => {
+        if (input) input.addEventListener("input", () => {
+            const activeButton = document.querySelector(".operation-btn.active");
+            if (activeButton) render(activeButton.dataset.opcode);
+        });
+    });
+})();
+</script>
+
+
+</body>
+</html>

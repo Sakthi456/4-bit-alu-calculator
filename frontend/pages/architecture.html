@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTL Architecture | 4-Bit ALU</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main class="calculator">
+    <header class="header">
+        <div class="logo">ALU</div>
+        <div>
+            <h1>4-Bit ALU Calculator</h1>
+            <p>Verilog Hardware Calculator | Vivado XSim</p>
+        </div>
+    </header>
+    <nav class="top-nav" aria-label="Main navigation"><a class="nav-link" href="../index.html">Calculator</a><a class="nav-link active" href="architecture.html">RTL Architecture</a><a class="nav-link" href="rtl-explorer.html">RTL Explorer</a><a class="nav-link" href="vivado-analysis.html">Vivado Analysis</a><a class="nav-link" href="testing.html">Testing</a><a class="nav-link" href="project-info.html">Project Info</a></nav>
+        <section class="architecture-section">
+
+        <h2>08. RTL Architecture Visualization</h2>
+
+        <p class="hardware-description">
+            Functional flow of the 4-bit ALU, from input selection to result generation.
+        </p>
+
+        <div class="architecture-flow">
+
+            <!-- INPUT -->
+            <div class="architecture-block input-block">
+                <span class="architecture-number">01</span>
+                <h3>Input Registers</h3>
+                <p>Input A [3:0]</p>
+                <p>Input B [3:0]</p>
+                <small>4-bit operands</small>
+            </div>
+
+            <div class="flow-arrow">↓</div>
+
+            <!-- CONTROL -->
+            <div class="architecture-block control-block">
+                <span class="architecture-number">02</span>
+                <h3>Opcode Decoder</h3>
+                <p>Opcode [2:0]</p>
+                <small>Selects one of eight operations</small>
+            </div>
+
+            <div class="flow-arrow">↓</div>
+
+            <!-- PROCESSING -->
+            <div class="processing-grid">
+
+                <div class="architecture-block arithmetic-block">
+                    <span class="architecture-number">03A</span>
+                    <h3>Arithmetic Unit</h3>
+                    <p>ADD</p>
+                    <p>SUBTRACT</p>
+                    <p>INCREMENT</p>
+                    <p>DECREMENT</p>
+                </div>
+
+                <div class="architecture-block logic-block">
+                    <span class="architecture-number">03B</span>
+                    <h3>Logic Unit</h3>
+                    <p>AND</p>
+                    <p>OR</p>
+                    <p>XOR</p>
+                    <p>NOT A</p>
+                </div>
+
+            </div>
+
+            <div class="flow-arrow">↓</div>
+
+            <!-- OUTPUT SELECT -->
+            <div class="architecture-block mux-block">
+                <span class="architecture-number">04</span>
+                <h3>Result Selection</h3>
+                <p>Operation-based selection</p>
+                <small>Produces selected 4-bit result</small>
+            </div>
+
+            <div class="flow-arrow">↓</div>
+
+            <!-- FINAL OUTPUT -->
+            <div class="architecture-block output-block">
+                <span class="architecture-number">05</span>
+                <h3>ALU Output</h3>
+                <p>Result [3:0]</p>
+                <p>Carry | Zero | Overflow</p>
+                <small>Final output and status flags</small>
+            </div>
+
+        </div>
+
+        <!-- RTL EXPLANATION -->
+        <div class="architecture-notes">
+
+            <h3>How the ALU Works</h3>
+
+            <ol>
+                <li>Two 4-bit operands are supplied through Input A and Input B.</li>
+                <li>The 3-bit opcode determines the required ALU operation.</li>
+                <li>The arithmetic or logic unit performs the selected operation.</li>
+                <li>The result selection logic chooses the appropriate output.</li>
+                <li>The ALU produces a 4-bit result and status flags.</li>
+            </ol>
+
+        </div>
+
+    </section>
+    <footer class="footer">
+        <span>4-bit Arithmetic Logic Unit</span>
+        <span>Powered by Verilog HDL and Vivado XSim</span>
+    </footer>
+</main>
+</body>
+</html>

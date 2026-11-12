@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive RTL Explorer | 4-Bit ALU</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main class="calculator">
+    <header class="header">
+        <div class="logo">ALU</div>
+        <div>
+            <h1>4-Bit ALU Calculator</h1>
+            <p>Verilog Hardware Calculator | Vivado XSim</p>
+        </div>
+    </header>
+    <nav class="top-nav" aria-label="Main navigation"><a class="nav-link" href="../index.html">Calculator</a><a class="nav-link" href="architecture.html">RTL Architecture</a><a class="nav-link active" href="rtl-explorer.html">RTL Explorer</a><a class="nav-link" href="vivado-analysis.html">Vivado Analysis</a><a class="nav-link" href="testing.html">Testing</a><a class="nav-link" href="project-info.html">Project Info</a></nav>
+        <section class="rtl-explorer-section" id="rtlExplorer">
+        <h2>09. Interactive RTL Explanation</h2>
+        <p class="hardware-description">
+            Select an ALU operation above or change the inputs to see how Version 2 prepares
+            the operands and uses its shared arithmetic unit or logic unit.
+        </p>
+
+        <div class="rtl-explorer">
+            <div class="rtl-explorer-heading">
+                <div>
+                    <span class="rtl-kicker">LIVE RTL WALKTHROUGH</span>
+                    <h3 id="rtlOperationTitle">Waiting for an operation</h3>
+                </div>
+                <span class="rtl-opcode" id="rtlOpcode">OPCODE: ---</span>
+            </div>
+
+            <div class="rtl-input-strip">
+                <div class="rtl-value-card">
+                    <span>INPUT A</span>
+                    <strong id="rtlInputA">0101</strong>
+                    <small id="rtlInputADecimal">Decimal: 5</small>
+                </div>
+                <div class="rtl-value-card">
+                    <span>INPUT B</span>
+                    <strong id="rtlInputB">0011</strong>
+                    <small id="rtlInputBDecimal">Decimal: 3</small>
+                </div>
+            </div>
+
+            <div class="rtl-path-card">
+                <h4>1. Operation path</h4>
+                <p id="rtlPathDescription">Choose one of the eight operations to begin.</p>
+                <div class="rtl-path-indicator">
+                    <span id="rtlArithmeticPath" class="rtl-path-chip">Shared arithmetic unit</span>
+                    <span id="rtlLogicPath" class="rtl-path-chip">Logic unit</span>
+                </div>
+            </div>
+
+            <div class="rtl-calculation-grid">
+                <div class="rtl-detail-card">
+                    <h4>2. Arithmetic operand preparation</h4>
+                    <div class="rtl-code-row">
+                        <span>arith_b</span>
+                        <strong id="rtlArithB">----</strong>
+                    </div>
+                    <div class="rtl-code-row">
+                        <span>carry_in</span>
+                        <strong id="rtlCarryIn">-</strong>
+                    </div>
+                    <p class="rtl-detail-note" id="rtlPreparationNote">
+                        Arithmetic operations prepare the second operand before addition.
+                    </p>
+                </div>
+
+                <div class="rtl-detail-card">
+                    <h4>3. Shared arithmetic expression</h4>
+                    <div class="rtl-expression" id="rtlExpression">
+                        {1'b0, A} + {1'b0, arith_b} + carry_in
+                    </div>
+                    <div class="rtl-code-row">
+                        <span>5-bit arithmetic result</span>
+                        <strong id="rtlArithmeticResult">-----</strong>
+                    </div>
+                    <p class="rtl-detail-note" id="rtlArithmeticNote">
+                        The 5-bit sum retains the carry-out bit.
+                    </p>
+                </div>
+            </div>
+
+            <div class="rtl-output-card">
+                <h4>4. Selected result and flags</h4>
+                <div class="rtl-output-grid">
+                    <div>
+                        <span>RESULT</span>
+                        <strong id="rtlResult">----</strong>
+                    </div>
+                    <div>
+                        <span>CARRY</span>
+                        <strong id="rtlCarryFlag">-</strong>
+                    </div>
+                    <div>
+                        <span>ZERO</span>
+                        <strong id="rtlZeroFlag">-</strong>
+                    </div>
+                    <div>
+                        <span>OVERFLOW</span>
+                        <strong id="rtlOverflowFlag">-</strong>
+                    </div>
+                </div>
+                <p id="rtlFlagExplanation" class="rtl-detail-note">
+                    The flags are generated by the selected operation's RTL logic.
+                </p>
+            </div>
+
+            <div class="rtl-code-card">
+                <h4>5. Related Verilog logic</h4>
+                <pre><code id="rtlCodeSnippet">Select an operation to display its relevant RTL logic.</code></pre>
+            </div>
+            <p class="rtl-disclaimer">
+                This walkthrough illustrates the supplied RTL equations in the browser.
+                The calculator result and simulation status continue to come from the FastAPI
+                backend and Vivado XSim.
+            </p>
+        </div>
+    </section>
+    <footer class="footer">
+        <span>4-bit Arithmetic Logic Unit</span>
+        <span>Powered by Verilog HDL and Vivado XSim</span>
+    </footer>
+</main>
+</body>
+</html>
